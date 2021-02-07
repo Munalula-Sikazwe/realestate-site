@@ -7,7 +7,7 @@ from stdimage import JPEGField
 class Realtor(models.Model):
     name = models.CharField(max_length=200, default='Not-available')
     photo = JPEGField(upload_to="photos/%Y/%m/%d/", variations={
-        'full': (None, None), 'thumbnail': (200, 200)
+        'full': (200,200), 'thumbnail': (200, 200)
     })
     description = models.TextField(blank=True)
     phone_number = models.CharField(max_length=20)
