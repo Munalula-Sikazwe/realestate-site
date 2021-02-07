@@ -12,8 +12,8 @@ from django.contrib.auth.decorators import login_required
 def tenant_dashboard(request):
     if request.user.is_authenticated:
         ### check if user is in the realtor database and redirect appropriately
-        if Realtor.objects.all().filter(name=request.user.get_full_name()).exists():
-            return redirect('realtor_dashboard')
+        if request.user.is_staff:
+            return redirect('/admin/')
         else:
             user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
             context = {
@@ -23,32 +23,32 @@ def tenant_dashboard(request):
             return render(request, 'accounts/tenant_dashboard.html', context)
 
 
-@login_required
-def realtor_dashboard(request):
-    if request.method == 'POST':
-        realtor = Realtor.objects.get(name=request.user.get_full_name())
-        listing_form = ListingForm(request.POST or None, request.FILES or None)
-        if listing_form.is_valid():
-            listing_details = listing_form.save(commit=False)
-            listing_details.realtor = realtor
-            listing_details.save()
-            return redirect('realtor_dashboard')
-        else:
-            messages.error(request, 'The form is invalid')
-            context = {
-                'form': listing_form
-            }
-            return render(request, 'accounts/realtor_dashboard.html', context)
-    else:
-        listing_form = ListingForm()
-        context = {
-            'form': listing_form
-        }
-        return render(request, 'accounts/realtor_dashboard.html', context)
-    return render(request, 'accounts/realtor_dashboard.html')
-
-    return render(request, 'accounts/realtor_dashboard.html')
-
+# @login_required
+# def realtor_dashboard(request):
+#     if request.method == 'POST':
+#         realtor = Realtor.objects.get(name=request.user.get_full_name())
+#         listing_form = ListingForm(request.POST or None, request.FILES or None)
+#         if listing_form.is_valid():
+#             listing_details = listing_form.save(commit=False)
+#             listing_details.realtor = realtor
+#             listing_details.save()
+#             return redirect('realtor_dashboard')
+#         else:
+#             messages.error(request, 'The form is invalid')
+#             context = {
+#                 'form': listing_form
+#             }
+#             return render(request, 'accounts/realtor_dashboard.html', context)
+#     else:
+#         listing_form = ListingForm()
+#         context = {
+#             'form': listing_form
+#         }
+#         return render(request, 'accounts/realtor_dashboard.html', context)
+#     return render(request, 'accounts/realtor_dashboard.html')
+#
+#     return render(request, 'accounts/realtor_dashboard.html')
+#
 
 def login(request):
     if request.method == 'POST':
@@ -56,12 +56,13 @@ def login(request):
         password = request.POST['password']
 
         user = auth.authenticate(username=username, password=password)
-
+        print (user)
         if user:
             auth.login(request, user)
             messages.success(request, 'You have successfully logged in')
-            if Realtor.objects.all().filter(name=user).exists():
-                return redirect('realtor_dashboard')
+            if request.user.is_staff:
+                print(request.user.is_staff)
+                return redirect('/admin/')
             else:
                 return redirect('tenant_dashboard')
     return render(request, 'accounts/login.html')
