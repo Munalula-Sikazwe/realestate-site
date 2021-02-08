@@ -3,7 +3,8 @@
 <html lang="en">
 
 <head>
-    <title> {% block title %}{% endblock title %} Ichikulwa realestates  </title>
+    <title> {% block title %}{% endblock title %} Ichikulwa realestates </title>
+    <meta name="google-site-verification" content="HA7eShk2yQ436ASSykZp_4yEEZ7ieMjGKS2WQ6eaxdM"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,23 +21,23 @@
 </head>
 
 <body>
-    <!-- Top Bar -->
-    {% include "partials/_top_nav_bar.html" %}
+<!-- Top Bar -->
+{% include "partials/_top_nav_bar.html" %}
 
-    <!-- NavBar -->
-    {% include "partials/_bottom_nav_bar.html" %}
-    
-    <!-- Main Content -->
-    {% block content %}
-    {% endblock %}
+<!-- NavBar -->
+{% include "partials/_bottom_nav_bar.html" %}
 
-     <!-- Footer -->
-    {% include "partials/_footer.html" %}
+<!-- Main Content -->
+{% block content %}
+{% endblock %}
 
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/lightbox.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+<!-- Footer -->
+{% include "partials/_footer.html" %}
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/lightbox.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
