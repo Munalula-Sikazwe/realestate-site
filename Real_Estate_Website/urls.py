@@ -24,7 +24,7 @@ from .sitemaps import ListingsSiteMap, StaticPagesSiteMap
 
 sitemaps = {
     'listings': ListingsSiteMap,
-    'static': StaticPagesSiteMap
+    'static_sites': StaticPagesSiteMap
 }
 urlpatterns = [
                   path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
