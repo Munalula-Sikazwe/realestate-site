@@ -1,5 +1,8 @@
 from django.db import models
 from datetime import datetime
+
+from django.urls import reverse
+
 from realtors.models import Realtor
 from .choices import province_choices, type_choices, status_choices_realtor
 from stdimage import JPEGField
@@ -67,3 +70,5 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
+    def get_absolute_url(self):
+        return reverse('listing',args=[str(self.id)])
