@@ -8,7 +8,8 @@ from stdimage import JPEGField
 # Create your models here.
 
 class Listing(models.Model):
-    BEDROOM_CHOICES = bedroom_choices = [(1, 1),
+    BEDROOM_CHOICES = bedroom_choices = [(0, 0),
+                                         (1, 1),
                                          (2, 2),
                                          (3, 3),
                                          (4, 4),
