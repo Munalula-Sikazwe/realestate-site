@@ -13,19 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import robots
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.core.mail import send_mail
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import ListingsSiteMap,StaticPagesSiteMap
+from .sitemaps import ListingsSiteMap, StaticPagesSiteMap
+
 sitemaps = {
-    'listings' : ListingsSiteMap,
+    'listings': ListingsSiteMap,
     'static': StaticPagesSiteMap
 }
 urlpatterns = [
-                path ('sitemap.xml',sitemap , {'sitemaps':sitemaps}),
+                  path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+                  path('robots.txt', include('robots.urls')),
                   path('', include('pages.urls')),
                   path('admin/', admin.site.urls),
                   path('listings/', include('listings.urls')),
