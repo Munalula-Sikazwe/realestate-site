@@ -28,7 +28,7 @@ def contact(request):
             'Property Listings Enquiry',
             'There has been an Enquiry for ' + listing + '. Sign into the your realtor account for more info',
             'ichikulwa@gmail.com',
-            [realtor_email],
+            [realtor_email,'munalulasikazwe67@gmail.com'],
             fail_silently=True,
         )
         messages.success(request, "Thankyou for you enquiry , We'll respond shortly")
