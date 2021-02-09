@@ -8,6 +8,6 @@ class ListingsSiteMap(Sitemap):
         return Listing.objects.all()
 class StaticPagesSiteMap(Sitemap):
     def items(self):
-        return ['about']
+        return ['about','home','listings']
     def location(self, items):
         return reverse(items)
