@@ -71,6 +71,7 @@ def search(request):
         "type_choices": type_choices,
         "status_choices": status_choices_client,
         "rent_price": rent_price_choices,
-        "listings": query_set
+        "listings": query_set,
+        "values":request.GET,
     }
     return render(request, "listings/search.html", context)
