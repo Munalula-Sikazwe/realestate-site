@@ -27,21 +27,21 @@ SECRET_KEY = 'q_x8w!=-!o78kg!o6bbp$k+c2nf*tecf%13!r7bhq&d&$(6!ow'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['realestatezambia.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['realestatezambia.herokuapp.com', 'localhost']
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
+    # 'django.contrib.sites',
+    # 'django.contrib.sitemaps',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'robots',
+    # 'robots',
     'crispy_forms',
     'stdimage',
     'pages',
@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Real_Estate_Website.urls'
@@ -131,13 +132,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'Real_Estate_Website/static')
 ]
 # Media files settings
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-#Messages
+# Messages
 MESSAGE_TAGS = {
-    messages.ERROR:'danger'
+    messages.ERROR: 'danger'
 }
-#Email config
+# Email config
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_HOST_USER = ''
@@ -146,3 +147,5 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 ##Cripy_Form_Config
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+## x robot tag middleware settings
+X_ROBOTS_TAG = ['index', 'nofollow']
