@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'image_cropping',
     # 'robots',
     'crispy_forms',
     'stdimage',
