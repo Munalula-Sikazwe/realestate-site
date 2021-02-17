@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     # 'robots',
+
     'crispy_forms',
     'stdimage',
     'pages',
@@ -148,4 +150,4 @@ EMAIL_USE_SSL = False
 ##Cripy_Form_Config
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ## x robot tag middleware settings
-X_ROBOTS_TAG = ['index', 'nofollow']
+
