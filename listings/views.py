@@ -8,7 +8,7 @@ from .choices import bedroom_choices, sale_price_choices, province_choices, type
 # Create your views here.
 def home(request):
     listings = Listing.objects.order_by('-list_date').filter(is_published=True, status__in=['For Rent', 'For Sale'])
-    paginator = Paginator(listings, 3)
+    paginator = Paginator(listings, 6)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     context = {
@@ -64,6 +64,9 @@ def search(request):
         area = request.GET['area']
         if area:
             query_set = query_set.filter(area__iexact=area)
+    paginator = Paginator(query_set, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
     context = {
         "bedroom_choices": bedroom_choices,
         "sale_price": sale_price_choices,
@@ -73,5 +76,6 @@ def search(request):
         "rent_price": rent_price_choices,
         "listings": query_set,
         "values":request.GET,
+        "listings":paged_listings
     }
     return render(request, "listings/search.html", context)
