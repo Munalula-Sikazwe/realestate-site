@@ -10,12 +10,10 @@ from listings.choices import bedroom_choices, sale_price_choices, province_choic
 
 def home(request):
     ### Ichikulwa's landing page
-    listings = Listing.objects.order_by('-list_date').filter(is_published=True, status__in=['For Rent', 'For Sale'])
-    paginator = Paginator(listings, 3)
-    page = request.GET.get('page')
-    paged_listings = paginator.get_page(page)
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True, status__in=['For Rent', 'For Sale'])[:3]
+
     context = {
-        "listings": paged_listings,
+        "listings": listings,
         "bedroom_choices": bedroom_choices,
         "sale_price": sale_price_choices,
         "state_choices": province_choices,
