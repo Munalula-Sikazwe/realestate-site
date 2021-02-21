@@ -68,7 +68,8 @@ class Listing(models.Model):
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
 
-    # def __str__(self):
-    #     return self.title
-    # def get_absolute_url(self):
-    #     return reverse('listing',args=[str(self.id)])
+
+    def __str__(self):
+        return self.title
+    def get_absolute_url(self):
+        return reverse('listing',args=[int(self.id)])

@@ -140,13 +140,6 @@ MEDIA_URL = '/media/'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
-# Email config
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = False
 ##Cripy_Form_Config
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ## x robot tag middleware settings

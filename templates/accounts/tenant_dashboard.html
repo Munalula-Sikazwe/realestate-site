@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% block title %} User Dashboard {% endblock %}
+
 
 
   <section id="showcase-inner" class="py-5 text-white">
@@ -41,20 +41,29 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col"> Inquiry reference number </th>
                 <th scope="col">Property</th>
-                <th></th>
+                   <th scope="col">Status </th>
+                <th> </th>
               </tr>
             </thead>
             <tbody>
             {% for contact in contacts %}
+
+
               <tr>
                 <td>{{ contact.id }}</td>
                 <td>{{ contact.listing }}</td>
+                  {% for listing in listings %}
+                      {% if contact.listing_id == listing.id %}
+                  <td>{{ listing.status }}</td>
+                      {% endif %}
+                          {% endfor %}
                 <td>
-                  <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}  ">View Listing</a>
+                  <a class="btn btn-success" href="{% url 'listing' contact.listing_id %}  ">View Listing</a>
                 </td>
               </tr>
+
             {% endfor %}
             </tbody>
           </table>

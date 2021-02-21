@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Contact
-from django.core.mail import send_mail
-
-
+from django.views import View
+from django.views.decorators.http import  require_POST
 # Create your views here.
-def contact(request):
-    if request.method == 'POST':
+class ContactView(View):
+    def post(self,request):
         listing = request.POST['listing']
         listing_id = request.POST['listing_id']
         name = request.POST['name']
@@ -17,20 +16,15 @@ def contact(request):
         realtor_email = request.POST['realtor_email']
         if request.user.is_authenticated:
             user_id = request.user.id
-            has_contacted = Contact.objects.all().filter(user_id=user_id, listing_id=listing_id)
+            has_contacted = Contact.objects.all().filter(user_id=user_id, listing_id=listing_id).exists()
             if has_contacted:
                 messages.error(request, "An enquiry on this listing has already been made")
                 return redirect('/listings/' + listing_id)
-        contact = Contact(listing=listing, listing_id=listing_id, name=name, email=email, phone=phone, message=message,
+            else:
+                contact = Contact(listing=listing, listing_id=listing_id, name=name, email=email, phone=phone, message=message,
                           user_id=user_id)
-        contact.save()
-        send_mail(
-            'Property Listings Enquiry',
-            'There has been an Enquiry for ' + listing + '. Sign into the your realtor account for more info',
-            'ichikulwa@gmail.com',
-            [realtor_email,'munalulasikazwe67@gmail.com'],
-            fail_silently=True,
-        )
-        messages.success(request, "Thankyou for you enquiry , We'll respond shortly")
+                contact.save()
+                messages.success(request,"Thankyou for your inquiry we'll respond , as soon as we can")
+
 
         return redirect('/listings/' + listing_id)

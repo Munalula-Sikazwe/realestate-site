@@ -12,4 +12,4 @@ class RealtorForm(ModelForm):
 class ListingForm(ModelForm):
     class Meta:
         model = Listing
-        exclude = ['is_published', 'list_date','realtor']
+        exclude = ['is_published', 'list_date', 'realtor']

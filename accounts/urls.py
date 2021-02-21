@@ -2,12 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
-    path('tenant_dashboard/', views.tenant_dashboard, name='tenant_dashboard'),
-    # path('realtor_dashboard/', views.realtor_dashboard, name='realtor_dashboard'),
-    path('register/', views.register, name='register'),
-    path('tenant_registration/', views.tenant_registration, name='tenant_registration'),
-    # path('realtor_registration/', views.realtor_registration, name='realtor_registration'),
-    # path('realtor_registration_phase2/', views.realtor_registration_phase2, name='realtor_registration_phase2')
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('tenant_dashboard/', views.TenantDashboardView.as_view(), name='tenant_dashboard'),
+    path('realtor_dashboard/', views.RealtorDashboardView.as_view(), name='realtor_dashboard'),
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('tenant_registration/', views.TenantRegistrationView.as_view(), name='tenant_registration'),
+    path('realtor_registration/', views.RealtorRegistrationView.as_view(), name='realtor_registration'),
+    path('realtor_registration_phase2/', views.RealtorRegistrationPhase2View.as_view(), name='realtor_registration_phase2'),
+    path('create',views.CreateListingView.as_view(),name= 'create'),
+    path('update/<int:pk>',views.UpdateListingView.as_view(),name= 'update'),
+    path('delete/<int:pk>', views.DeleteListingView.as_view(), name='delete')
 ]
