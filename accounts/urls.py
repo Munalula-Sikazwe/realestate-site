@@ -12,5 +12,6 @@ urlpatterns = [
     path('realtor_registration_phase2/', views.RealtorRegistrationPhase2View.as_view(), name='realtor_registration_phase2'),
     path('create',views.CreateListingView.as_view(),name= 'create'),
     path('update/<int:pk>',views.UpdateListingView.as_view(),name= 'update'),
-    path('delete/<int:pk>', views.DeleteListingView.as_view(), name='delete')
+    path('delete/<int:pk>', views.DeleteListingView.as_view(), name='delete'),
+    path('profileupdate/<int:pk>',views.UpdateProfileView.as_view(),name='profile_update')
 ]

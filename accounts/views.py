@@ -8,11 +8,11 @@ from realtors.forms import RealtorForm
 from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from listings.models import Listing
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 # Create your views here.
-class TenantDashboardView(LoginRequiredMixin,View):
+class TenantDashboardView(LoginRequiredMixin, View):
     def get(self, request):
         if request.user.is_authenticated:
             if request.user.is_staff:
@@ -30,13 +30,14 @@ class TenantDashboardView(LoginRequiredMixin,View):
                 return render(request, 'accounts/tenant_dashboard.html', context)
 
 
-class RealtorDashboardView(LoginRequiredMixin,View):
+class RealtorDashboardView(LoginRequiredMixin, View):
 
     def get(self, request):
         realtor = Realtor.objects.get(user=request.user)
         listings = Listing.objects.filter(realtor=realtor)
         context = {
-            'listings': listings
+            'listings': listings,
+            'realtor': realtor
         }
         return render(request, 'accounts/realtor_dashboard.html', context)
 
@@ -172,13 +173,14 @@ class RealtorRegistrationPhase2View(View):
         return render(request, 'accounts/photo_submission_form.html', context)
 
 
-class CreateListingView(LoginRequiredMixin,CreateView):
+class CreateListingView(LoginRequiredMixin, CreateView):
     model = Listing
     template_name = 'accounts/createupdatelisting.html'
     fields = (
-    'title', 'type', 'address', 'area', 'district', 'city', 'province', 'description', 'status', 'price', 'bedrooms',
-    'bathrooms', 'garage', 'sqft', 'lot_size', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5',
-    'photo_6')
+        'title', 'type', 'address', 'area', 'district', 'city', 'province', 'description', 'status', 'price',
+        'bedrooms',
+        'bathrooms', 'garage', 'sqft', 'lot_size', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5',
+        'photo_6')
 
     def get_initial(self):
         realtor = Realtor.objects.get(user=self.request.user.pk)
@@ -194,7 +196,7 @@ class CreateListingView(LoginRequiredMixin,CreateView):
             return self.model.objects.filter(realtor=realtor)
 
 
-class UpdateListingView(LoginRequiredMixin,UpdateView):
+class UpdateListingView(LoginRequiredMixin, UpdateView):
     model = Listing
     template_name = 'accounts/createupdatelisting.html'
     fields = ('title', 'type', 'address', 'area', 'district', 'city', 'province', 'description', 'status', 'price',
@@ -210,7 +212,7 @@ class UpdateListingView(LoginRequiredMixin,UpdateView):
             return self.model.objects.filter(realtor=realtor)
 
 
-class DeleteListingView(LoginRequiredMixin,DeleteView):
+class DeleteListingView(LoginRequiredMixin, DeleteView):
     model = Listing
     template_name = 'accounts/deletelisting.html'
     success_url = reverse_lazy('realtor_dashboard')
@@ -221,3 +223,13 @@ class DeleteListingView(LoginRequiredMixin,DeleteView):
         else:
             realtor = Realtor.objects.get(user=self.request.user.pk)
             return self.model.objects.filter(realtor=realtor)
+
+
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
+    model = Realtor
+    fields = ('name', 'photo', 'description', 'phone_number', 'email')
+    template_name = 'accounts/profile_update.html'
+
+    def get_object(self):
+        if self.request.user:
+            return self.model.objects.get(user=self.request.user.pk)
