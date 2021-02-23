@@ -48,7 +48,6 @@ class LoginView(View):
         password = request.POST['password']
 
         user = auth.authenticate(username=username, password=password)
-        print(user)
 
         if user:
             auth.login(request, user)

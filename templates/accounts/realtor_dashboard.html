@@ -33,7 +33,7 @@
     <section id="dashboard" class="py-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12  ">
 
                     <h2>Welcome {{ user.first_name }} {{ user.last_name }}
                                         <a class="btn btn-primary" href="{% url 'profile_update' realtor.id %}">
@@ -42,16 +42,18 @@
                                     </h2>
                     {% if listings %}
                         <p>Here are your current property listings</p>
-                        <table class="table">
+                        <table class="table table-responsive">
                             <thead>
                             <tr>
                                 <th scope="col"> Listing id</th>
                                 <th scope="col">Property</th>
                                 <th scope="col">Status</th>
-                                <th></th>
+                                <th scope="col" ></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                             {% for listing in listings %}
 
 
