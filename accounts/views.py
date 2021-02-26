@@ -175,8 +175,7 @@ class RealtorRegistrationPhase2View(View):
 class CreateListingView(LoginRequiredMixin, CreateView):
     model = Listing
     template_name = 'accounts/createupdatelisting.html'
-    fields = (
-        'title', 'type', 'address', 'area', 'district', 'city', 'province', 'description', 'status', 'price',
+    fields = ('realtor','title', 'type', 'address', 'area', 'district', 'city', 'province', 'description', 'status', 'price',
         'bedrooms',
         'bathrooms', 'garage', 'sqft', 'lot_size', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5',
         'photo_6')
