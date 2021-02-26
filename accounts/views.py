@@ -9,7 +9,7 @@ from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from listings.models import Listing
 from django.urls import reverse_lazy, reverse
-
+from realtors.forms import ListingForm
 
 # Create your views here.
 class TenantDashboardView(LoginRequiredMixin, View):
@@ -175,10 +175,7 @@ class RealtorRegistrationPhase2View(View):
 class CreateListingView(LoginRequiredMixin, CreateView):
     model = Listing
     template_name = 'accounts/createupdatelisting.html'
-    fields = ('realtor','title', 'type', 'address', 'area', 'district', 'city', 'province', 'description', 'status', 'price',
-        'bedrooms',
-        'bathrooms', 'garage', 'sqft', 'lot_size', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5',
-        'photo_6')
+    form_class = ListingForm
 
     def get_initial(self):
         realtor = Realtor.objects.get(user=self.request.user.pk)
@@ -197,10 +194,7 @@ class CreateListingView(LoginRequiredMixin, CreateView):
 class UpdateListingView(LoginRequiredMixin, UpdateView):
     model = Listing
     template_name = 'accounts/createupdatelisting.html'
-    fields = ('title', 'type', 'address', 'area', 'district', 'city', 'province', 'description', 'status', 'price',
-              'bedrooms', 'bathrooms', 'garage', 'sqft', 'lot_size', 'photo_main', 'photo_1', 'photo_2', 'photo_3',
-              'photo_4',
-              'photo_5', 'photo_6')
+    form_class = ListingForm
 
     def get_queryset(self):
         if self.request.user.is_superuser:
