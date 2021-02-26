@@ -49,22 +49,22 @@ class Listing(models.Model):
     })
     photo_1 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (19, 1258)
-    }, blank=True)
+    })
     photo_2 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (1920, 1258)
-    }, blank=True)
+    })
     photo_3 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (1920, 1258)
-    }, blank=True)
+    })
     photo_4 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (1920, 1258)
-    }, blank=True)
+    })
     photo_5 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (1920, 1258)
-    }, blank=True)
+    })
     photo_6 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (1920, 1258)
-    }, blank=True)
+    })
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
 
