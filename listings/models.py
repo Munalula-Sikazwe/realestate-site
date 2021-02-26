@@ -46,7 +46,7 @@ class Listing(models.Model):
     lot_size = models.DecimalField(max_digits=5, decimal_places=1, default='')
     photo_main = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (600, 600)
-    }, blank=True)
+    })
     photo_1 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
         'full': (None, None), 'thumbnail': (19, 1258)
     }, blank=True)
