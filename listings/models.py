@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from realtors.models import Realtor
 from .choices import province_choices, type_choices, status_choices_realtor
-from stdimage import JPEGField
+from stdimage import StdImageField
 
 
 # Create your models here.
@@ -44,27 +44,13 @@ class Listing(models.Model):
     garage = models.IntegerField(default=0)
     sqft = models.IntegerField(default='')
     lot_size = models.DecimalField(max_digits=5, decimal_places=1, default='')
-    photo_main = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
-        'full': (None, None), 'thumbnail': (600, 600)
-    })
-    photo_1 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
-        'full': (None, None), 'thumbnail': (19, 1258)
-    })
-    photo_2 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
-        'full': (None, None), 'thumbnail': (1920, 1258)
-    })
-    photo_3 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
-        'full': (None, None), 'thumbnail': (1920, 1258)
-    })
-    photo_4 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
-        'full': (None, None), 'thumbnail': (1920, 1258)
-    })
-    photo_5 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
-        'full': (None, None), 'thumbnail': (1920, 1258)
-    })
-    photo_6 = JPEGField(upload_to='photos/%Y/%m/%d/', variations={
-        'full': (None, None), 'thumbnail': (1920, 1258)
-    })
+    photo_main = StdImageField(upload_to='photos/%Y/%m/%d/')
+    photo_1 = StdImageField(upload_to='photos/%Y/%m/%d/')
+    photo_2 = StdImageField(upload_to='photos/%Y/%m/%d/',)
+    photo_3 = StdImageField(upload_to='photos/%Y/%m/%d/')
+    photo_4 = StdImageField(upload_to='photos/%Y/%m/%d/')
+    photo_5 = StdImageField(upload_to='photos/%Y/%m/%d/')
+    photo_6 = StdImageField(upload_to='photos/%Y/%m/%d/')
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
 
