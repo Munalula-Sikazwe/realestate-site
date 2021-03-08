@@ -10,7 +10,7 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from listings.models import Listing
 from django.urls import reverse_lazy, reverse
 from realtors.forms import ListingForm
-
+from django.core.paginator import Paginator
 # Create your views here.
 class TenantDashboardView(LoginRequiredMixin, View):
     def get(self, request):
@@ -22,9 +22,12 @@ class TenantDashboardView(LoginRequiredMixin, View):
             else:
                 user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
                 listings = Listing.objects.order_by('-list_date')
+                paginator = Paginator(listings,6)
+                page = request.GET.get('page')
+                paged_listing = paginator.get_page(page)
                 context = {
                     'contacts': user_contacts,
-                    'listings': listings
+                    'listings': paged_listing
                 }
 
                 return render(request, 'accounts/tenant_dashboard.html', context)
@@ -35,8 +38,11 @@ class RealtorDashboardView(LoginRequiredMixin, View):
     def get(self, request):
         realtor = Realtor.objects.get(user=request.user)
         listings = Listing.objects.filter(realtor=realtor)
+        paginator = Paginator(listings,6)
+        page = request.GET.get('page')
+        paged_listings = paginator.get_page(page)
         context = {
-            'listings': listings,
+            'listings': paged_listings,
             'realtor': realtor
         }
         return render(request, 'accounts/realtor_dashboard.html', context)

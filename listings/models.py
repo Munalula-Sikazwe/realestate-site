@@ -58,4 +58,4 @@ class Listing(models.Model):
     def __str__(self):
         return self.title
     def get_absolute_url(self):
-        return reverse('listing',args=[int(self.id)])
+        return reverse('listing',args=[str(self.id),])
