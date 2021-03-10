@@ -3,8 +3,8 @@
 
 
 
-            {% block title %} Chose Registration {% endblock %}
-       {% block content %}
+{% block title %} Chose Registration {% endblock %}
+{% block content %}
     <section id="showcase-inner" class="py-5 text-white">
         <div class="container">
             <div class="row text-center">
@@ -47,7 +47,7 @@
                     <h2>For Tenants</h2>
                     <p class="lead"> Search for a home that is to your liking and track your inquired listings</p>
                     <a href="{% url 'tenant_registration' %}">
-                        <button class="btn btn-secondary  "> Begin property Search</button>
+                        <button class="btn btn-primary  "> Begin property Search</button>
                     </a>
 
                     <p class="mt-4"></p>
@@ -55,10 +55,9 @@
                 <div class="col-md-8">
                     <h2>For Realtors</h2>
                     <p class="lead"> Begin connecting with esteemed clients</p>
-                    <a href="{% url 'realtor_registration' %}">
-                        <button class="btn btn-secondary "> Realtor Up</button>
+                    <a href="#">
+                        <button class="btn btn-primary disabled " disabled> Realtor Up</button>
                     </a>
-
                     <p class="mt-4"></p>
                 </div>
             </div>

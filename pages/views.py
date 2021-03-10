@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from listings.models import Listing
+from realtors.models import Realtor
 from listings.choices import bedroom_choices, sale_price_choices, province_choices, type_choices, status_choices_client, \
     rent_price_choices
 from django.views import View
@@ -10,7 +11,7 @@ class HomeView(View):
     def get(self,request):
         ### Ichikulwa's landing page
         listings = Listing.objects.order_by('-list_date').filter(is_published=True, status__in=['For Rent', 'For Sale'])[:3]
-
+        realtors = Realtor.objects.all()
         context = {
             "listings": listings,
             "bedroom_choices": bedroom_choices,
@@ -18,7 +19,8 @@ class HomeView(View):
             "state_choices": province_choices,
             "type_choices": type_choices,
             "status_choices": status_choices_client,
-            "rent_price": rent_price_choices
+            "rent_price": rent_price_choices,
+            "realtors":realtors
 
         }
 
@@ -26,3 +28,4 @@ class HomeView(View):
 
 class AboutView(TemplateView):
      template_name = 'pages/about.html'
+

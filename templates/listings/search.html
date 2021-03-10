@@ -93,6 +93,14 @@
                                     {% endfor %}
                                 </select>
                             </div>
+                         <div class="col-md-6 mb-3">
+                                <select name="realtor" class="form-control" id="type">
+                                    <option selected="true" disabled="disabled">Realtor</option>
+                                    {% for realtor in realtors %}
+                                        <option value="{{ realtor }}"> {{ realtor }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                             <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
                         </div>
                     </form>
@@ -149,7 +157,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="listing-heading text-center">
-                                        <h4 class="text-primary">{{ listing.title }}</h4>
+                                        <h4 class="text-primary text-truncate">{{ listing.title }}</h4>
                                         <p>
                                             <i class="fas fa-map-marker text-secondary"></i> {{ listing.province }},{{ listing.city }},{{ listing.district }},{{ listing.zipcode }}
                                         </p>

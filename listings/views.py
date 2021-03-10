@@ -4,7 +4,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .choices import bedroom_choices, sale_price_choices, province_choices, type_choices, status_choices_client, \
     rent_price_choices
 from django.views import View
-
+from realtors.models import Realtor
 # Create your views here.
 class ListingsView(View):
     def get(self,request):
@@ -29,6 +29,7 @@ class ListingView(View):
 class SearchView(View):
     def get(self,request):
         query_set = Listing.objects.order_by('-list_date').filter(is_published=True, status__in=['For Rent', 'For Sale'])
+        realtors = Realtor.objects.all()
         if 'keywords' in request.GET:
             keyword = request.GET['keywords']
             if keyword:
@@ -65,6 +66,10 @@ class SearchView(View):
             area = request.GET['area']
             if area:
                 query_set = query_set.filter(area__iexact=area)
+        if 'realtor' in request.GET:
+            realtor = request.GET.get('realtor')
+            if realtor:
+                query_set = query_set.filter(realtor__name=realtor)
         paginator = Paginator(query_set, 6)
         page = request.GET.get('page')
         paged_listings = paginator.get_page(page)
@@ -75,8 +80,8 @@ class SearchView(View):
             "type_choices": type_choices,
             "status_choices": status_choices_client,
             "rent_price": rent_price_choices,
-            "listings": query_set,
             "values":request.GET,
-            "listings":paged_listings
+            "listings":paged_listings,
+            "realtors":realtors,
         }
         return render(request, "listings/search.html", context)
