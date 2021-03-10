@@ -44,7 +44,9 @@ class SearchView(View):
                 query_set = query_set.filter(province__iexact=state)
         if 'sale_price' in request.GET:
             sale_price = request.GET['sale_price']
-            if sale_price:
+            if sale_price == '900001':
+                query_set = query_set.filter(price__gte=sale_price)
+            else:
                 query_set = query_set.filter(price__lte=sale_price)
         if 'bedrooms' in request.GET:
             bedrooms = request.GET['bedrooms']
@@ -52,7 +54,9 @@ class SearchView(View):
                 query_set = query_set.filter(bedrooms__iexact=bedrooms)
         if 'rent_price' in request.GET:
             rent_price = request.GET['rent_price']
-            if rent_price:
+            if rent_price == '9001':
+                query_set = query_set.filter(price__gte=rent_price)
+            else:
                 query_set = query_set.filter(price__lte=rent_price)
         if 'type' in request.GET:
             type = request.GET['type']
