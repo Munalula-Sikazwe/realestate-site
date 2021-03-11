@@ -227,6 +227,7 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
     model = Realtor
     fields = ('name', 'photo', 'description', 'phone_number', 'email')
     template_name = 'accounts/profile_update.html'
+    success_url = reverse_lazy('realtor')
 
     def get_object(self):
         if self.request.user:

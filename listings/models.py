@@ -1,8 +1,8 @@
 from django.db import models
 from datetime import datetime
-
+from PIL import Image
 from django.urls import reverse
-
+import os
 from realtors.models import Realtor
 from .choices import province_choices, type_choices, status_choices_realtor
 from stdimage import StdImageField
@@ -46,7 +46,7 @@ class Listing(models.Model):
     lot_size = models.DecimalField(max_digits=5, decimal_places=1, default='')
     photo_main = StdImageField(upload_to='photos/%Y/%m/%d/')
     photo_1 = StdImageField(upload_to='photos/%Y/%m/%d/')
-    photo_2 = StdImageField(upload_to='photos/%Y/%m/%d/',)
+    photo_2 = StdImageField(upload_to='photos/%Y/%m/%d/', )
     photo_3 = StdImageField(upload_to='photos/%Y/%m/%d/')
     photo_4 = StdImageField(upload_to='photos/%Y/%m/%d/')
     photo_5 = StdImageField(upload_to='photos/%Y/%m/%d/')
@@ -54,8 +54,19 @@ class Listing(models.Model):
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        photos = (self.photo_main, self.photo_1, self.photo_2, self.photo_3, self.photo_4, self.photo_5, self.photo_6)
+        SIZE = (600, 338)
+
+        for photo in photos:
+            if photo:
+                current_photo = Image.open(photo.path)
+                photo_resized = current_photo.resize(SIZE)
+                photo_resized.save(photo.path)
 
     def __str__(self):
         return self.title
+
     def get_absolute_url(self):
-        return reverse('listing',args=[str(self.id),])
+        return reverse('listing', args=[str(self.id), ])
