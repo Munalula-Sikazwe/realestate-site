@@ -18,7 +18,7 @@ class Realtor(models.Model):
 
     def save(self,*args,**kwargs):
         super().save(*args,**kwargs)
-        SIZE = (600,338)
+        SIZE = (200,200)
         if self.photo:
             current_photo = Image.open(self.photo.path)
             current_photo_resized = current_photo.resize(SIZE)
