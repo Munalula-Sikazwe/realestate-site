@@ -13,16 +13,7 @@ class Realtor(models.Model):
     description = models.TextField(blank=True)
     phone_number = models.CharField(max_length=20)
     email = models.CharField(max_length=50, default='n/a')
-    #is_mvp = models.BooleanField(default=False)
     hire_date = models.DateTimeField(default=datetime.now, blank=True)
-
-    def save(self,*args,**kwargs):
-        super().save(*args,**kwargs)
-        SIZE = (200,200)
-        if self.photo:
-            current_photo = Image.open(self.photo.path)
-            current_photo_resized = current_photo.resize(SIZE)
-            current_photo_resized.save(self.photo.path)
 
     def __str__(self):
         return self.name

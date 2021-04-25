@@ -54,16 +54,6 @@ class Listing(models.Model):
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        photos = (self.photo_main, self.photo_1, self.photo_2, self.photo_3, self.photo_4, self.photo_5, self.photo_6)
-        SIZE = (600, 338)
-
-        for photo in photos:
-            if photo:
-                current_photo = Image.open(photo.path)
-                photo_resized = current_photo.resize(SIZE)
-                photo_resized.save(photo.path)
 
     def __str__(self):
         return self.title
