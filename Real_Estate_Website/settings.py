@@ -27,7 +27,7 @@ SECRET_KEY = 'q_x8w!=-!o78kg!o6bbp$k+c2nf*tecf%13!r7bhq&d&$(6!ow'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['realestatezambia.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['realestatezambia.herokuapp.com', 'localhost','icikulwa.me']
 
 # Application definition
 
