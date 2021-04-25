@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'listings',
     'contacts',
     'accounts',
+    'storages',
+
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -146,3 +148,12 @@ MESSAGE_TAGS = {
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ## Postgre Environmental configurations
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'mysite/static'),
+]
+
+AWS_ACCESS_KEY_ID = 'AKIAX56IEEZBOAX26BCF'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'icikulwabucket'
+
+DEFAULT_FILE_STORAGE = 'mysite.pstorage_backends.MediaStorage'
