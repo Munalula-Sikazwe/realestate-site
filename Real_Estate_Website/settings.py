@@ -156,4 +156,4 @@ AWS_ACCESS_KEY_ID = 'AKIAX56IEEZBOAX26BCF'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'icikulwabucket'
 
-DEFAULT_FILE_STORAGE = 'mysite.pstorage_backends.MediaStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
