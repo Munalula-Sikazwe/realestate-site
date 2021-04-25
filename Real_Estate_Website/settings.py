@@ -157,7 +157,7 @@ AWS_SECRET_ACCESS_KEY = 'OBKJDw7XzLe2DzblFIf9Ze3OM5F2YchZM1kRmw7v'
 AWS_STORAGE_BUCKET_NAME = 'icikulwabucket'
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 [
     {
