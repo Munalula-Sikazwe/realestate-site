@@ -25,7 +25,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'q_x8w!=-!o78kg!o6bbp$k+c2nf*tecf%13!r7bhq&d&$(6!ow'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['realestatezambia.herokuapp.com', 'localhost','icikulwa.me','www.icikulwa.me']
 
@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -146,28 +146,3 @@ MESSAGE_TAGS = {
 }
 ##Cripy_Form_Config
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-## Postgre Environmental configurations
-
-
-AWS_ACCESS_KEY_ID = 'AKIAX56IEEZBOAX26BCF'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'icikulwabucket'
-AWS_DEFAULT_ACL =  'public-read'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-AWS_S3_REGION_NAME = 'us-east-2'
-[
-    {
-        "AllowedHeaders": [
-            "*"
-        ],
-        "AllowedMethods": [
-            "POST",
-            "GET",
-            "PUT"
-        ],
-        "AllowedOrigins": [
-            "*"
-        ]
-    }
-]
