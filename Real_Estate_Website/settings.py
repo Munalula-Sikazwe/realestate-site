@@ -22,12 +22,12 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q_x8w!=-!o78kg!o6bbp$k+c2nf*tecf%13!r7bhq&d&$(6!ow'
+SECRET_KEY = 'q_x$k+c2nf*tecf%13!r7bhq&d&$(!ow'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['realestatezambia.herokuapp.com', 'localhost','icikulwa.me','www.icikulwa.me']
+ALLOWED_HOSTS = [ 'localhost',]
 
 # Application definition
 
